@@ -34,6 +34,8 @@ function displayMenu(){ //called when page is opened or when returned to menu af
     });
 }
 
+
+
 function startGame(mode){ // called when game starts from menu or from Play Again
     turn = "X";
     board = [" ", " ", " ", " ", " ", " ", " ", " ", " "];
@@ -77,7 +79,7 @@ function startGame(mode){ // called when game starts from menu or from Play Agai
 
     for(let i = 1; i <= 9; ++i){
         let currentSquare = document.querySelector("#s" + i);
-        currentSquare.addEventListener("click", function(){
+        currentSquare.addEventListener("click", async function(){
             if(currentSquare.innerHTML != "X" && currentSquare.innerHTML != "O"){ // square not filled in yet
                 if(gameMode == 2){ //two player
                     currentSquare.innerHTML = turn;
@@ -100,13 +102,16 @@ function startGame(mode){ // called when game starts from menu or from Play Agai
                     currentSquare.innerHTML = "X";
                     board[i-1] = "X";
                     if(done() || full()){
-                        setTimeout(gameOver, 500);
-                        return;
+                        //setTimeout(gameOver, 500);
+                        await sleep(500);
+                        return gameOver();
                     }
+                    await sleep(267);
                     playerOMove();
                     if(done() || full()){
-                        setTimeout(gameOver, 500);
-                        return;
+                        //setTimeout(gameOver, 500);
+                        await sleep(500);
+                        return gameOver();
                     }
                     
                 }
@@ -114,9 +119,16 @@ function startGame(mode){ // called when game starts from menu or from Play Agai
         });
     }
 }
+function sleep(ms) {
+    return new Promise(resolve => {
+        setTimeout(resolve, ms)
+    });
+}
+
 
 function playerOMove(){
-    // bot: if x can win on next move, block one path.
+    //      If O can win, win
+    //      if X can win, block one path.
     //      else, go in a random available square
     // 0 1 2
     // 3 4 5
@@ -124,6 +136,23 @@ function playerOMove(){
     var moved = false;
     var boards = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
     boards.random
+    boards.forEach((deck)=>{
+        if(!moved){
+            let arr = [board[deck[0]], board[deck[1]], board[deck[2]]];
+            arr.sort();
+            if((arr[0] == " " && arr[1] == "O" && arr[2] == "O") || (arr[0] == " " && arr[1] == "X" && arr[2] == "X")){    
+                for(let i = 0; i < 2; ++i){
+                    if(board[deck[i]] == " "){
+                        document.querySelector("#s" + (deck[i] + 1)).innerHTML = "O";
+                        board[deck[i]] = "O";
+                        moved = true;
+                        return;
+                    }
+                }  
+            }
+        }
+        
+    });
     boards.forEach((deck)=>{
         if(!moved){
             let arr = [board[deck[0]], board[deck[1]], board[deck[2]]];
