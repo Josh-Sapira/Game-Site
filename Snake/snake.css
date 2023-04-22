@@ -33,7 +33,7 @@ body {
     right:3px;
     height:30px;
     width:30px;
-    background-image: url("./Images/homeButton.jpg");
+    background-image: url("./Images/homeButton.png");
     background-size: 100% 100%;
     z-index: 999;
 }

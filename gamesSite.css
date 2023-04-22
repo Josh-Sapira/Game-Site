@@ -2,6 +2,7 @@ html,body {
   margin: 0px;
   overflow-y:hidden;
   overflow-x:hidden;
+  font-family:monospace;
 }
 
 .window{
@@ -13,7 +14,7 @@ html,body {
 
 .headerWindow{
     width:100vw;
-    height:20vh;
+    height:60vh;
 }
 
 .siteTitle{
@@ -27,7 +28,7 @@ html,body {
 
 .scrollWindow{
     width:100vw;
-    height:80vh;
+    height:40vh;
     background-color: black;
     position:flex;
     display:inline-block;
@@ -40,8 +41,6 @@ html,body {
 }
 
 .gameButton{
-    height:90%;
-    width:90%;
     cursor: pointer;
     display:inline-block;
     vertical-align:top;
@@ -52,17 +51,39 @@ html,body {
 }
 
 #checkersButton{
+    height:100%;
     background-image: url("./Images/CheckersBanner.jpg");
     background-size: 100% 100%;
     border:0;
+    aspect-ratio: 2/1;
 }
 
 #ticTacToeButton{
+    height:100%;
     background-image: url("./Images/TicTacToeBanner.jpg");
     background-size: 100% 100%;
     border:0;
+    aspect-ratio: 2/1;
+}
+
+#snakeButton{
+    height:100%;
+    background-image: url("./Images/SnakeBanner.jpg");
+    background-size: 100% 100%;
+    border:0;
+    aspect-ratio: 2/1;
 }
 
 .scrollWindow::-webkit-scrollbar {
     display: none;
+}
+
+#arcadeLogo {
+    height: 20vh;
+    aspect-ratio: 1/1;
+    background-image: url("./Images/ArcadeLogo.png");
+    background-size: 100% 100%;
+    border: 0;
+    margin: auto auto;
+    transform: translateY(5vh);
 }
