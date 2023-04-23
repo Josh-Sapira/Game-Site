@@ -70,7 +70,7 @@ function checkCollisions() {
     }
 
     //Check if snake hits border
-    if(snakeY < 0 || snakeX < 0 || snakeY > canvas.height || snakeX > canvas.width) {
+    if(snakeY < -15 || snakeX < -15 || snakeY > canvas.height || snakeX > canvas.width) {
         gameOver();
     }
 
