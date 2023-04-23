@@ -8,9 +8,9 @@ canvas.height = 600;
 var gameEnded = false;
 var snakeParts = [];
 var snakeLength = 1;
-var snakeX = 0;
+var snakeX = 300;
 var snakeXOld = 0;
-var snakeY = 0;
+var snakeY = 300;
 var snakeYOld = 0;
 var directionX = 15;
 var directionY = 0;
@@ -47,6 +47,8 @@ function moveSnake() {
     snakeX += directionX;
     snakeY += directionY;
 
+    
+
     //Remove end of snake
     while(snakeParts.length > snakeLength) {
         snakeParts.pop();
@@ -65,6 +67,7 @@ function checkCollisions() {
     //Check if snake eats food
     if(snakeX == food.xPos && snakeY == food.yPos) {
         snakeLength += 1;
+        document.getElementById("scoreNumber").innerHTML = snakeLength-1;
         //Create new food
         spawnFood();
     }
@@ -88,14 +91,6 @@ function gameOver() {
     alert("Game over! You had a final score of " + snakeLength);
     gameEnded = true
 }
-
-//Sleep function for timeout on keydown event listener
-function sleep(ms) {
-    return new Promise(resolve => {
-        setTimeout(resolve, ms)
-    });
-}
-
 
 //When key pressed function
 document.onkeydown = function(event) {

@@ -1,6 +1,7 @@
 body {
     font-family:monospace;
     background-color: rgb(33, 171, 33);
+    overflow: hidden;
 }
 
 #game {
@@ -11,9 +12,16 @@ body {
 }
 
 #textContainer {
-    width:80vh;
+    width:100vw;
     height: 11vh;
     margin:auto auto;
+    text-align:center;
+}
+
+#gameInfoContainer {
+    width: 100vw;
+    height: 12vh;
+    margin:0 0;
     text-align:center;
 }
 
