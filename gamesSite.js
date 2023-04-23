@@ -7,10 +7,39 @@ var rightSmallContainer = document.getElementById("rightSmall");
 var rightMediumContainer = document.getElementById("rightMedium");
 var rightArrow = document.getElementById("rightArrow");
 var leftArrow = document.getElementById("leftArrow");
+var joshCheckbox = document.getElementById("joshCheckbox");
+var jonahCheckbox = document.getElementById("jonahCheckbox");
 
 //Variables
 var buttons = [];
+var buttonsJosh = [];
+var buttonsJonah = [];
 var middle = 5;
+
+//Add event listeners to checkbox so that, when clicked, the buttons update
+joshCheckbox.addEventListener("click", function() {
+    if(joshCheckbox.checked) {
+        for(let i=0; i<buttonsJosh.length; i++) {
+            buttons.unshift(buttonsJosh[i]);
+        }
+    }
+    else {
+        buttons = buttons.filter(x => !buttonsJosh.includes(x));
+    }
+    console.log(buttons);
+    loadButtons(middle);
+});
+jonahCheckbox.addEventListener("click", function() {
+    if(jonahCheckbox.checked) {
+        for(let i=0; i<buttonsJonah.length; i++) {
+            buttons.unshift(buttonsJonah[i]);
+        }
+    }
+    else {
+        buttons = buttons.filter(x => !buttonsJonah.includes(x));
+    }
+    loadButtons(middle);
+});
 
 //Create Buttons
 //Checkers
@@ -21,6 +50,7 @@ checkersButton.onclick = function () {
     location.href='./Checkers/checkers.html';
 }
 buttons.unshift(checkersButton);
+buttonsJosh.unshift(checkersButton);
 
 //Tic Tac Toe
 const tttButton = document.createElement('button');
@@ -30,6 +60,7 @@ tttButton.onclick = function () {
     location.href='./TicTacToe/TicTacToe.html';
 }
 buttons.unshift(tttButton);
+buttonsJonah.unshift(tttButton);
 
 //Snake
 const snakeButton = document.createElement('button');
@@ -39,9 +70,10 @@ snakeButton.onclick = function () {
     location.href='./Snake/snake.html';
 }
 buttons.unshift(snakeButton);
+buttonsJosh.unshift(snakeButton);
 
 //Create Test buttons
-for(let i=0; i<3; i++) {
+for(let i=0; i<6; i++) {
     const testButton = document.createElement('button');
     testButton.setAttribute('class', 'gameButton');
     testButton.style.backgroundColor = 'yellow';
