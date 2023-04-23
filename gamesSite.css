@@ -31,47 +31,94 @@ html,body {
     height:40vh;
     background-color: black;
     position:flex;
-    display:inline-block;
+    display:flex;
     margin-bottom: 5vw;
     overflow-x: scroll;
     overflow-y: hidden;
     overflow: auto;
     white-space: nowrap;
     scroll-snap-type: x mandatory;
+    align-items: center;
 }
 
 .gameButton{
+    height: 100%;
+    width: 100%;
     cursor: pointer;
     display:inline-block;
     vertical-align:top;
     z-index: 999;
-    margin: auto 10vw;
     scroll-snap-align: center;
     border-radius: 25px;
 }
 
+#leftArrow {
+    width: 3vw;
+    height: 50%;
+    background-image: url('./Images/leftArrow.png');
+    background-size: 100% 100%;
+    border: 0;
+    z-index: 999;
+    margin-left: 1vw;
+    margin-right: 1vw;
+}
+
+#leftSmall {
+    width:6vw;
+    aspect-ratio: 2/1;
+    margin-right:1vw;
+}
+
+#leftMedium {
+    width: 20vw;
+    aspect-ratio: 2/1;
+    margin-right:1vw;
+}
+
+#middle {
+    width:34vw;
+    aspect-ratio: 2/1;
+    margin-right:1vw;
+}
+
+#rightMedium {
+    width: 20vw;
+    aspect-ratio: 2/1;
+    margin-right:1vw;
+}
+
+#rightSmall {
+    width:6vw;
+    aspect-ratio: 2/1;
+    margin-right:1vw;
+}
+
+#rightArrow {
+    width: 3vw;
+    height: 50%;
+    background-image: url('./Images/rightArrow.png');
+    background-size: 100% 100%;
+    border: 0;
+    z-index: 999;
+    margin-right:1vw;
+}
+
 #checkersButton{
-    height:100%;
     background-image: url("./Images/CheckersBanner.jpg");
     background-size: 100% 100%;
     border:0;
-    aspect-ratio: 2/1;
 }
 
 #ticTacToeButton{
-    height:100%;
     background-image: url("./Images/TicTacToeBanner.jpg");
     background-size: 100% 100%;
     border:0;
-    aspect-ratio: 2/1;
 }
 
 #snakeButton{
-    height:100%;
     background-image: url("./Images/SnakeBanner.jpg");
     background-size: 100% 100%;
     border:0;
-    aspect-ratio: 2/1;
 }
 
 .scrollWindow::-webkit-scrollbar {

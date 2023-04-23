@@ -1,8 +1,16 @@
 //Get items from HTML
 var scrollWindow = document.getElementsByClassName("scrollWindow")[0];
+var middleContainer = document.getElementById("middle");
+var leftSmallContainer = document.getElementById("leftSmall");
+var leftMediumContainer = document.getElementById("leftMedium");
+var rightSmallContainer = document.getElementById("rightSmall");
+var rightMediumContainer = document.getElementById("rightMedium");
+var rightArrow = document.getElementById("rightArrow");
+var leftArrow = document.getElementById("leftArrow");
 
 //Variables
 var buttons = [];
+var middle = 5;
 
 //Create Buttons
 //Checkers
@@ -32,24 +40,43 @@ snakeButton.onclick = function () {
 }
 buttons.unshift(snakeButton);
 
-//Add buttons to HTML doc
-for(let i=0; i<buttons.length; i++) {
-    scrollWindow.appendChild(buttons[i]);
+//Create Test buttons
+for(let i=0; i<3; i++) {
+    const testButton = document.createElement('button');
+    testButton.setAttribute('class', 'gameButton');
+    testButton.style.backgroundColor = 'yellow';
+    testButton.innerHTML = i;
+    buttons.unshift(testButton);
+}
+loadButtons(middle);
+
+//modular arithmetic function because js % operator returns negative values for -n mod m
+function mod(n, m) {
+    return ((n % m) + m) % m;
 }
 
-while(true) {
-    // for(let i=0; i<buttons.length; i++) {
-    //     let button = buttons[i];
-    //     let xPos = button.offsetLeft;
-        
-    //     let distanceFromCenter = Math.abs(window.innerWidth - xPos);
-    //     let percentToCenter = distanceFromCenter/(window.innerWidth/2)
-    //     console.log(percentToCenter);
-    // }
-    let button = buttons[0];
-    let xPos = button.offsetLeft;
-        
-    let distanceFromCenter = Math.abs(window.innerWidth - xPos);
-    let percentToCenter = distanceFromCenter/(window.innerWidth/2)
-    console.log(percentToCenter);
+
+//Load Buttons Function
+function loadButtons(middleIndex) {
+    middleContainer.replaceChildren(buttons[middleIndex]);
+    leftSmallContainer.replaceChildren(buttons[mod(middleIndex - 2, buttons.length)]); //Modular arithmetic to loop back around to beginning
+    leftMediumContainer.replaceChildren(buttons[mod(middleIndex - 1, buttons.length)]);
+    rightSmallContainer.replaceChildren(buttons[mod(middleIndex + 2, buttons.length)]); 
+    rightMediumContainer.replaceChildren(buttons[mod(middleIndex + 1, buttons.length)]);
 }
+
+//Add event listeners to arrows
+leftArrow.addEventListener("click", function() {
+    middle -= 1;
+    if(middle < 0) {
+        middle = buttons.length-1;
+    }
+    loadButtons(middle);
+});
+rightArrow.addEventListener("click", function() {
+    middle += 1;
+    if(middle >= buttons.length) {
+        middle = 0;
+    }
+    loadButtons(middle);
+});
