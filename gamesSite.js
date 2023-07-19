@@ -77,6 +77,7 @@ for(let i=0; i<6; i++) {
     const testButton = document.createElement('button');
     testButton.setAttribute('class', 'gameButton');
     testButton.style.backgroundColor = 'yellow';
+    testButton.innerText = "";
     buttons.unshift(testButton);
 }
 loadButtons(middle);
