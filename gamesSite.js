@@ -10,7 +10,7 @@ var leftArrow = document.getElementById("leftArrow");
 var joshCheckbox = document.getElementById("joshCheckbox");
 var jonahCheckbox = document.getElementById("jonahCheckbox");
 
-//Variables
+//Variables 
 var buttons = [];
 var buttonsJosh = [];
 var buttonsJonah = [];
